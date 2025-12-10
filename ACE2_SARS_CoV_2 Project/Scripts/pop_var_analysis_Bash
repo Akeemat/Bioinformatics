@@ -1,0 +1,11 @@
+wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5c.20130502.sites.vcf.gz
+
+gzip -cd ALL.wgs.phase3_shapeit2_mvncall_integrated_v5c.20130502.sites.vcf.gz | \
+awk '/^#/ {next} ($1=="X" && ($2==15542116 || $2==15547161 || $2==15515319 || $2==15620340)) {print}' > ace2_4snps_by_position.txt
+
+wc -l ace2_4snps_by_position.txt
+
+gzip -cd ALL.wgs.phase3_shapeit2_mvncall_integrated_v5c.20130502.sites.vcf.gz | \
+awk '/^#/ {next} ($1=="X" && $2 >= 15579156 && $2 <= 15619083) {print}' > ace2_region_variants.txt
+
+wc -l ace2_region_variants.txt
